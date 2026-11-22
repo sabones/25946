@@ -10,7 +10,6 @@ typedef struct Node {
 int main(void){
     char buffer[1024];
     Node *head = NULL;
-    Node *tail = NULL;
     while (fgets(buffer, sizeof buffer, stdin) != NULL) {
     if (buffer[0] == '.') {
         break;
@@ -27,15 +26,9 @@ int main(void){
         break;
     }
     strcpy(node->data, buffer);
-    node->next = NULL;
-    if (head == NULL) {
-        head = node;
-    }
-    else {
-        tail->next = node;
-    }
-    tail = node;
-    }
+    node->next = head;
+    head = node;
+}
 Node *current = head;
 while (current != NULL) {
     printf("%s", current->data);
